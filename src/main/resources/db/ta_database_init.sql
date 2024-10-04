@@ -1,0 +1,25 @@
+USE [master]
+GO
+
+IF DB_ID('ppfbank') IS NOT NULL
+  set noexec on
+
+CREATE DATABASE [ppfbank];
+GO
+
+USE [ppfbank]
+GO
+
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE LOGIN [admin1] WITH PASSWORD = 'Pass1234'
+GO
+
+CREATE SCHEMA app
+    GO
+
+CREATE USER [admin1] FOR LOGIN [admin1] WITH DEFAULT_SCHEMA=[app]
+GO
