@@ -19,8 +19,11 @@ public class TransactionService {
     private final TransactionRepository transactionRepository;
 
     public List<TransactionDTO> getTransactionsByOwnAccountNumber(String ownAccountNumber) {
-        List<Transaction> transactions = transactionRepository.findByOwnAccountNumber(ownAccountNumber);
-        return transactions.stream()
+        if (ownAccountNumber == null) {
+            return null;
+        }
+        return transactionRepository.findByOwnAccountNumber(ownAccountNumber)
+                .stream()
                 .map(this::convertToDTO)
                 .collect(Collectors.toList());
     }
