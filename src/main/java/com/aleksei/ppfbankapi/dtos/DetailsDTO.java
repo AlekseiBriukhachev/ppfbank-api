@@ -1,5 +1,6 @@
 package com.aleksei.ppfbankapi.dtos;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -9,6 +10,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Schema(description = "Details about the transaction details")
+@JsonInclude(JsonInclude.Include.NON_EMPTY)
 public class DetailsDTO {
     @Schema(description = "The first detail of the transaction")
     private String detail1;

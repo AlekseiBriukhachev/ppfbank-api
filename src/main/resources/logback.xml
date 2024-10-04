@@ -3,7 +3,7 @@
 
 
     <appender name="file" class="ch.qos.logback.core.FileAppender">
-        <file>log/todo-api.log</file>
+        <file>log/ppfbank-api.log</file>
 
         <encoder>
             <charset>UTF-8</charset>
