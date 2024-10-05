@@ -18,7 +18,7 @@ import java.util.Objects;
 public class Account {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "accountid", nullable = false)
+    @Column(name = "accountId", nullable = false)
     @Schema(description = "The unique ID of the account")
     private Long accountId;
 

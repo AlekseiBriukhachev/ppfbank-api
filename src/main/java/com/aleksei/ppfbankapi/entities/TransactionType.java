@@ -8,7 +8,7 @@ import org.hibernate.proxy.HibernateProxy;
 import java.util.Objects;
 
 @Entity
-@Table(name = "transactiontype")
+@Table(name = "transactionType")
 @Getter
 @Setter
 @ToString
@@ -18,7 +18,7 @@ import java.util.Objects;
 public class TransactionType {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "trxtypeid", nullable = false)
+    @Column(name = "trxTypeId", nullable = false)
     @Schema(description = "The unique ID of the transaction type")
     private Long trxTypeId;
 

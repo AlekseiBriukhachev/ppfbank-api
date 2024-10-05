@@ -1,11 +1,14 @@
 -- MS SQL server
+USE [ppfbank-db]
+GO
+
 CREATE TABLE [transaction](
 	[trxId]                    [bigint] IDENTITY(1000,1) NOT NULL,
 	[amount]                   [numeric](19, 2)    NOT NULL,
 	[currency]                 [nvarchar](3)       NOT NULL,
 	[id]                       [nvarchar](20)      NOT NULL,
 	[bankref]                  [nvarchar](20)      NOT NULL,
-	[transactionId]            [nvarchar](20)      NOT NULL,        
+	[transactionId]            [nvarchar](20)      NOT NULL,
 	[bookingDate]              [date]              NULL,
 	[postingDate]              [date]              NOT NULL,
 	[creditDebitIndicator]     [varchar](4)        NULL,
@@ -19,7 +22,7 @@ CREATE TABLE [transaction](
 	[transactionType]          [bigint]            NOT NULL,
 	[statement]                [bigint]            NOT NULL,   
 	[constantSymbol]           [varchar](10)       NULL,
-	[specificSymbol]           [varchar](10)       NULL,    
+	[specificSymbol]           [varchar](10)       NULL,
 	[variableSymbol]           [varchar](10)       NULL
 )
 GO

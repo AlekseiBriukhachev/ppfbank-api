@@ -1,25 +1,17 @@
-USE [master]
+CREATE DATABASE [ppfbank-db]
 GO
 
-IF DB_ID('ppfbank') IS NOT NULL
-  set noexec on
-
-CREATE DATABASE [ppfbank];
-GO
-
-USE [ppfbank]
-GO
-
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
+USE [ppfbank-db];
 GO
 
 CREATE LOGIN [admin1] WITH PASSWORD = 'Pass1234'
 GO
 
 CREATE SCHEMA app
-    GO
+GO
 
 CREATE USER [admin1] FOR LOGIN [admin1] WITH DEFAULT_SCHEMA=[app]
+GO
+
+ALTER ROLE db_owner ADD MEMBER [admin1]
 GO

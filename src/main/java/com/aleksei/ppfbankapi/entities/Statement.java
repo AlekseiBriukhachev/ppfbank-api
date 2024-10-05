@@ -18,7 +18,7 @@ import java.util.Objects;
 public class Statement {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "statementid", nullable = false)
+    @Column(name = "statementId", nullable = false)
     @Schema(description = "The unique ID of the statement")
     private Long statementId;
 

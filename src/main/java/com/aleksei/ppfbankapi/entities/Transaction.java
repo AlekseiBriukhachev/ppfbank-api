@@ -10,7 +10,7 @@ import java.time.LocalDate;
 import java.util.Objects;
 
 @Entity
-@Table(name = "transaction")
+@Table(name = "[transaction]")
 @Getter
 @Setter
 @ToString
@@ -20,7 +20,7 @@ import java.util.Objects;
 public class Transaction {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name= "trxid", nullable = false)
+    @Column(nullable = false)
     @Schema(description = "The unique ID of the transaction")
     private Long trxId;
 
@@ -40,23 +40,23 @@ public class Transaction {
     @Schema(description = "The bank reference of the transaction")
     private String bankref;
 
-    @Column(name = "transactionid", nullable = false, length = 20)
+    @Column(nullable = false, length = 20)
     @Schema(description = "The transaction ID")
     private String transactionId;
 
-    @Column(name = "bookingdate", nullable = false)
+    @Column(nullable = false)
     @Schema(description = "The booking date of the transaction")
     private LocalDate bookingDate;
 
-    @Column(name = "postingdate", nullable = false)
+    @Column(nullable = false)
     @Schema(description = "The posting date of the transaction")
     private LocalDate postingDate;
 
-    @Column(name = "creditdebitindicator", length = 4)
+    @Column(length = 4)
     @Schema(description = "The credit or debit indicator of the transaction")
     private String creditDebitIndicator;
 
-    @Column(name = "ownaccountnumber", length = 20)
+    @Column(length = 20)
     @Schema(description = "The own account number of the transaction")
     private String ownAccountNumber;
 
@@ -76,29 +76,29 @@ public class Transaction {
     @Schema(description = "Detail 4 of the transaction")
     private String detail4;
 
-    @Column(name = "productbankref", length = 50)
+    @Column(length = 50)
     @Schema(description = "The product bank reference")
     private String productBankRef;
 
-    @Column(name = "constantsymbol", length = 10)
+    @Column(length = 10)
     @Schema(description = "The constant symbol")
     private String constantSymbol;
 
-    @Column(name = "specificsymbol", length = 10)
+    @Column(length = 10)
     @Schema(description = "The specific symbol")
     private String specificSymbol;
 
-    @Column(name = "variablesymbol", length = 10)
+    @Column(length = 10)
     @Schema(description = "The variable symbol")
     private String variableSymbol;
 
-    @ManyToOne
-    @JoinColumn(name = "counterpartyaccount", nullable = false)
+    @OneToOne
+    @JoinColumn(name = "counterPartyAccount", nullable = false)
     @Schema(description = "The counter party account")
     private Account counterPartyAccount;
 
     @ManyToOne
-    @JoinColumn(name = "transactiontype", nullable = false)
+    @JoinColumn(name = "transactionType", nullable = false)
     @Schema(description = "The transaction type")
     private TransactionType transactionType;
 
