@@ -10,7 +10,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -25,45 +24,37 @@ public class TransactionService {
         return transactionRepository.findByOwnAccountNumber(ownAccountNumber)
                 .stream()
                 .map(this::convertToDTO)
-                .collect(Collectors.toList());
+                .toList();
     }
 
     private TransactionDTO convertToDTO(Transaction transaction) {
-        TransactionDTO dto = new TransactionDTO();
-
-        AmountDTO amountDTO = new AmountDTO();
-        amountDTO.setCurrency(transaction.getCurrency());
-        amountDTO.setValue(transaction.getAmount());
-        dto.setAmount(amountDTO);
-
-        CounterPartyAccountDTO counterPartyAccountDTO = new CounterPartyAccountDTO();
-        counterPartyAccountDTO.setAccountName(transaction.getCounterPartyAccount().getName());
-        counterPartyAccountDTO.setAccountNumber(transaction.getCounterPartyAccount().getNumber());
-        counterPartyAccountDTO.setBankCode(transaction.getCounterPartyAccount().getCode());
-        dto.setCounterPartyAccount(counterPartyAccountDTO);
-
-        DetailsDTO detailsDTO = new DetailsDTO();
-        detailsDTO.setDetail1(transaction.getDetail1());
-        detailsDTO.setDetail2(transaction.getDetail2());
-        detailsDTO.setDetail3(transaction.getDetail3());
-        detailsDTO.setDetail4(transaction.getDetail4());
-        dto.setDetails(detailsDTO);
-
-        dto.setBankref(transaction.getBankref());
-        dto.setBookingDate(transaction.getBookingDate());
-        dto.setCreditDebitIndicator(transaction.getCreditDebitIndicator());
-        dto.setId(transaction.getId());
-        dto.setOwnAccountNumber(transaction.getOwnAccountNumber());
-        dto.setPostingDate(transaction.getPostingDate());
-        dto.setProductBankRef(transaction.getProductBankRef());
-        dto.setSpecificSymbol(transaction.getSpecificSymbol());
-        dto.setStatementNumber(transaction.getStatement().getNumber());
-        dto.setStatementPeriod(transaction.getStatement().getPeriod());
-        dto.setTransactionId(transaction.getTransactionId());
-        dto.setTransactionType(transaction.getTransactionType().getType());
-        dto.setTransactionTypeCode(transaction.getTransactionType().getCode());
-        dto.setVariableSymbol(transaction.getVariableSymbol());
-
-        return dto;
+        return new TransactionDTO(
+                new AmountDTO(transaction.getCurrency(), transaction.getAmount()),
+                transaction.getBankref(),
+                transaction.getBookingDate(),
+                new CounterPartyAccountDTO(
+                        transaction.getCounterPartyAccount().getName(),
+                        transaction.getCounterPartyAccount().getNumber(),
+                        transaction.getCounterPartyAccount().getCode()
+                ),
+                transaction.getCreditDebitIndicator(),
+                new DetailsDTO(
+                        transaction.getDetail1(),
+                        transaction.getDetail2(),
+                        transaction.getDetail3(),
+                        transaction.getDetail4()
+                ),
+                transaction.getId(),
+                transaction.getOwnAccountNumber(),
+                transaction.getPostingDate(),
+                transaction.getProductBankRef(),
+                transaction.getSpecificSymbol(),
+                transaction.getStatement().getNumber(),
+                transaction.getStatement().getPeriod(),
+                transaction.getTransactionId(),
+                transaction.getTransactionType().getType(),
+                transaction.getTransactionType().getCode(),
+                transaction.getVariableSymbol()
+        );
     }
 }
