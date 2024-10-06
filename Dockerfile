@@ -29,7 +29,8 @@ FROM openjdk:17-jdk-slim AS app
 
 WORKDIR /ppfbank-api
 
-COPY build/libs/*.jar ppfbank-api.jar
+# Copy the fat JAR with all dependencies
+COPY build/libs/ppfbank-api.jar ppfbank-api.jar
 
 EXPOSE 8081
 
